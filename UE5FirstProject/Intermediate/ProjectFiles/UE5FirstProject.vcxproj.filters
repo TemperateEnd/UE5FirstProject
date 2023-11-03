@@ -36,12 +36,6 @@
     <ClInclude Include="..\..\Source\UE5FirstProject\FirstUE5ProjectGameModeBase.h">
       <Filter>Source\UE5FirstProject</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\UE5FirstProject\testclass123.cpp">
-      <Filter>Source\UE5FirstProject</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\UE5FirstProject\testclass123.h">
-      <Filter>Source\UE5FirstProject</Filter>
-    </ClInclude>
     <None Include="..\..\Source\UE5FirstProject\UE5FirstProject.Build.cs">
       <Filter>Source\UE5FirstProject</Filter>
     </None>
