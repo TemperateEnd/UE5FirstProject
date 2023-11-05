@@ -4,7 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "UE5FirstProjectCharacter.generated.h"
+
 
 UCLASS()
 class UE5FIRSTPROJECT_API AUE5FirstProjectCharacter : public ACharacter
@@ -41,4 +44,12 @@ public:
 	//Clear jump flag on key-release
 	UFUNCTION()
 	void StopJump();
+
+	//FPS Camera
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* FPSCameraComponent;
+
+	//First-person mesh (arms), visible only to owning player
+	UPROPERTY(VisibleDefaultsOnly, Category=Mesh)
+	USkeletalMeshComponent* FPSMesh;
 };

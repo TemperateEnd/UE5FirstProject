@@ -9,6 +9,35 @@ AUE5FirstProjectCharacter::AUE5FirstProjectCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	//Create first person camera component
+	FPSCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FPSCamera"));
+	check(FPSCameraComponent != nullptr);
+
+	//Attach camera component to capsule component
+	FPSCameraComponent->SetupAttachment(CastChecked<USceneComponent, UCapsuleComponent>(GetCapsuleComponent()));
+
+	//Position camera slightly above eyes
+	FPSCameraComponent->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f + BaseEyeHeight));
+
+	//Enable pawn to control camera rotation
+	FPSCameraComponent->bUsePawnControlRotation = true;
+
+	//Create FPS Mesh component for owning player
+	FPSMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FirstPersonMesh"));
+	check(FPSMesh != nullptr);
+
+	//Only owning player sees this mesh
+	FPSMesh->SetOnlyOwnerSee(true);
+
+	//Attach FPS mesh to FPS camera
+	FPSMesh->SetupAttachment(FPSCameraComponent);
+
+	//Disable environmental shadows to preserve illusion of single mesh.
+	FPSMesh->bCastDynamicShadow = false;
+	FPSMesh->CastShadow = false;
+
+	//Stops player from seeing third-person mesh
+	GetMesh()->SetOwnerNoSee(true);
 }
 
 // Called when the game starts or when spawned
