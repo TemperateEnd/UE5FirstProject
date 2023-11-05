@@ -35,19 +35,39 @@ void AUE5FirstProjectCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	//Set up movement bindings
 	PlayerInputComponent->BindAxis("MoveForward", this, &AUE5FirstProjectCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AUE5FirstProjectCharacter::MoveRight);
+
+	//Set up looking bindings
+	PlayerInputComponent->BindAxis("Turn", this, &AUE5FirstProjectCharacter::AddControllerYawInput);
+	PlayerInputComponent->BindAxis("LookUp", this, &AUE5FirstProjectCharacter::AddControllerPitchInput);
+
+	//Set up "action" bindings
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AUE5FirstProjectCharacter::StartJump);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &AUE5FirstProjectCharacter::StopJump);
 }
 
-//handles z-axis movement
+//handles movement backwards/forwards
 void AUE5FirstProjectCharacter::MoveForward(float value) {
 	//Find which way is forward and then record that player wants to move forward
 	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::X);
 	AddMovementInput(Direction, value);
 }
 
+//handles movement left/right
 void AUE5FirstProjectCharacter::MoveRight(float value) {
 	//Find which way is right and then record that player wants to move right
 	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::Y);
 	AddMovementInput(Direction, value);
+}
+
+//Sets jump flag
+void AUE5FirstProjectCharacter::StartJump() {
+	bPressedJump = true;
+}
+
+//Clears jump flag
+void AUE5FirstProjectCharacter::StopJump() {
+	bPressedJump = false;
 }

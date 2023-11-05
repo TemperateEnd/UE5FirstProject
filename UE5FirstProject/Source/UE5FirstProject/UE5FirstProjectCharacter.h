@@ -33,4 +33,12 @@ public:
 	//handles movement along x-axis
 	UFUNCTION()
 	void MoveRight(float value);
+
+	//Set jump flag on key-press
+	UFUNCTION()
+	void StartJump();
+
+	//Clear jump flag on key-release
+	UFUNCTION()
+	void StopJump();
 };
