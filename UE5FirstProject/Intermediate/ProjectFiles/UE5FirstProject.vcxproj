@@ -204,6 +204,12 @@
       <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ClInclude Include="..\..\Source\UE5FirstProject\FirstUE5ProjectGameModeBase.h"/>
+    <ClCompile Include="..\..\Source\UE5FirstProject\Projectile.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UE5FirstProject\Projectile.h"/>
     <None Include="..\..\Source\UE5FirstProject\UE5FirstProject.Build.cs"/>
     <ClCompile Include="..\..\Source\UE5FirstProject\UE5FirstProject.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>

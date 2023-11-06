@@ -75,6 +75,8 @@ void AUE5FirstProjectCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 	//Set up "action" bindings
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AUE5FirstProjectCharacter::StartJump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &AUE5FirstProjectCharacter::StopJump);
+
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AUE5FirstProjectCharacter::Fire);
 }
 
 //handles movement backwards/forwards
@@ -99,4 +101,40 @@ void AUE5FirstProjectCharacter::StartJump() {
 //Clears jump flag
 void AUE5FirstProjectCharacter::StopJump() {
 	bPressedJump = false;
+}
+
+void AUE5FirstProjectCharacter::Fire() {
+	if (ProjectileClass) {
+		//Get camera transform
+		FVector CameraLocation;
+		FRotator CameraRotation;
+		GetActorEyesViewPoint(CameraLocation, CameraRotation);
+
+		//Set ProjectileSpawn to spawn projectiles slightly in front of camera
+		ProjectileSpawn.Set(100.0f, 0.0f, 0.0f);
+
+		//Transform ProjectileSpawn from camera space to world space
+		FVector SpawnLocation = CameraLocation + FTransform(CameraRotation).TransformVector(ProjectileSpawn);
+
+		//Skew aim to be slightly upwards
+		FRotator SpawnRotation = CameraRotation;
+		SpawnRotation.Pitch += 10.0f;
+
+		UWorld* World = GetWorld();
+
+		if (World) {
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = GetInstigator();
+
+			//Spawn projectile at projectile spawn
+			AProjectile* Projectile = World->SpawnActor<AProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, SpawnParams);
+
+			if (Projectile) {
+				//Set initial trajectory
+				FVector LaunchDirection = SpawnRotation.Vector();
+				Projectile->FireInDirection(LaunchDirection);
+			}
+		}
+	}
 }

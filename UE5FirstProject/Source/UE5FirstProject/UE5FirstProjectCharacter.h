@@ -3,9 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/Character.h"
 #include "Components/CapsuleComponent.h"
+#include "Projectile.h"
 #include "UE5FirstProjectCharacter.generated.h"
 
 
@@ -22,12 +23,20 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	//Projectile class to spawn
+	UPROPERTY(EditDefaultsOnly, Category=Projectile)
+	TSubclassOf<class AProjectile> ProjectileClass;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	//handles firing projectiles
+	UFUNCTION()
+	void Fire();
 
 	//handles movement along z-axis
 	UFUNCTION()
@@ -52,4 +61,8 @@ public:
 	//First-person mesh (arms), visible only to owning player
 	UPROPERTY(VisibleDefaultsOnly, Category=Mesh)
 	USkeletalMeshComponent* FPSMesh;
+
+	//Projectile spawn point
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
+	FVector ProjectileSpawn;
 };
