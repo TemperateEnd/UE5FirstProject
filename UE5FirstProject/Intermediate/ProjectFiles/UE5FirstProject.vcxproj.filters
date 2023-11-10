@@ -57,5 +57,11 @@
     <ClInclude Include="..\..\Source\UE5FirstProject\UE5FirstProjectCharacter.h">
       <Filter>Source\UE5FirstProject</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\UE5FirstProject\UE5FirstProjectHUD.cpp">
+      <Filter>Source\UE5FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UE5FirstProject\UE5FirstProjectHUD.h">
+      <Filter>Source\UE5FirstProject</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
