@@ -7,6 +7,7 @@
 #include "GameFramework/Character.h"
 #include "Components/CapsuleComponent.h"
 #include "Projectile.h"
+#include "LevelUpComponent.h"
 #include "UE5FirstProjectCharacter.generated.h"
 
 
@@ -27,6 +28,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category=Projectile)
 	TSubclassOf<class AProjectile> ProjectileClass;
 
+	//LevelUpComponent class
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "LevelUp")
+	class ULevelUpComponent* LevelUpComponentClass;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -37,6 +42,10 @@ public:
 	//handles firing projectiles
 	UFUNCTION()
 	void Fire();
+
+	//Test function for adding XP
+	UFUNCTION()
+	void AddXP();
 
 	//handles movement along z-axis
 	UFUNCTION()

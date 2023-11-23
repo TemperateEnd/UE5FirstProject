@@ -26,6 +26,15 @@ AUE5FirstProjectCharacter::AUE5FirstProjectCharacter()
 	FPSMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FirstPersonMesh"));
 	check(FPSMesh != nullptr);
 
+	//Create LevelUpComponent component
+	LevelUpComponentClass = CreateDefaultSubobject<ULevelUpComponent>(TEXT("LevelUpComponent")); 
+	LevelUpComponentClass->maxXP = 100;
+	LevelUpComponentClass->currentXP = 0;
+	LevelUpComponentClass->levelNumber = 1;
+
+	UE_LOG(LogTemp, Warning, TEXT("Max XP: %d"), LevelUpComponentClass->maxXP);
+	UE_LOG(LogTemp, Warning, TEXT("Level %d reached!"), LevelUpComponentClass->levelNumber);
+
 	//Only owning player sees this mesh
 	FPSMesh->SetOnlyOwnerSee(true);
 
@@ -44,12 +53,7 @@ AUE5FirstProjectCharacter::AUE5FirstProjectCharacter()
 void AUE5FirstProjectCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	check(GEngine != nullptr);
 
-	//Display debug for 5 seconds: That's the 5.0f
-	//-1 "Key" value argument stops message from being updated or refreshed
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("REECE IS AWESOME!x2"));
 }
 
 // Called every frame
@@ -77,6 +81,8 @@ void AUE5FirstProjectCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &AUE5FirstProjectCharacter::StopJump);
 
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AUE5FirstProjectCharacter::Fire);
+
+	PlayerInputComponent->BindAction("XPIncreaseTest", IE_Pressed, this, &AUE5FirstProjectCharacter::AddXP);
 }
 
 //handles movement backwards/forwards
@@ -137,4 +143,8 @@ void AUE5FirstProjectCharacter::Fire() {
 			}
 		}
 	}
+}
+
+void AUE5FirstProjectCharacter::AddXP() {
+	LevelUpComponentClass->AddXP(15);
 }

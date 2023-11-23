@@ -36,6 +36,12 @@
     <ClInclude Include="..\..\Source\UE5FirstProject\FirstUE5ProjectGameModeBase.h">
       <Filter>Source\UE5FirstProject</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\UE5FirstProject\LevelUpComponent.cpp">
+      <Filter>Source\UE5FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UE5FirstProject\LevelUpComponent.h">
+      <Filter>Source\UE5FirstProject</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\UE5FirstProject\Projectile.cpp">
       <Filter>Source\UE5FirstProject</Filter>
     </ClCompile>
