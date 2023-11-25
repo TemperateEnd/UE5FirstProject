@@ -52,12 +52,18 @@ void ULevelUpComponent::CheckLevelUpStatus() {
 		levelNumber++;
 		currentXP -= maxXP; 
 		maxXP = (maxXP * 2); 
+	}
+}
 
-		UE_LOG(LogTemp, Warning, TEXT("Level %d reached!"), levelNumber);
-		UE_LOG(LogTemp, Warning, TEXT("Get %d XP to reach next level"), maxXP);
-	}
-	else {
-		UE_LOG(LogTemp, Warning, TEXT("%d XP to go!"), (maxXP - currentXP));
-	}
+int ULevelUpComponent::GetCurrentXP() const {
+	return currentXP;
+}
+
+int ULevelUpComponent::GetCurrentLevel() const {
+	return levelNumber;
+}
+
+int ULevelUpComponent::GetMaxXP() const {
+	return maxXP;
 }
 
