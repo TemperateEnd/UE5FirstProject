@@ -38,7 +38,7 @@ void ULevelUpComponent::AddXP(int value) {
 	}
 	
 
-	UE_LOG(LogTemp, Warning, TEXT("Current XP: %d"), currentXP);
+	UE_LOG(LogTemp, Warning, TEXT("Current XP: %d"), GetCurrentXP());
 	UE_LOG(LogTemp, Warning, TEXT("XP increase value: %d"), value);
 }
 
