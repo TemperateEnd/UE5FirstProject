@@ -39,4 +39,13 @@ public:
 
 	UFUNCTION() 
 	void CheckLevelUpStatus();
+
+	UFUNCTION(BlueprintCallable, Category="XP")
+	int GetCurrentXP() const;
+
+	UFUNCTION(BlueprintCallable, Category="XP")
+	int GetMaxXP() const;
+
+	UFUNCTION(BlueprintCallable, Category="Level")
+	int GetCurrentLevel() const;
 };

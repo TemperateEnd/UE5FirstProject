@@ -9,6 +9,8 @@ AUE5FirstProjectCharacter::AUE5FirstProjectCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+
+
 	//Create first person camera component
 	FPSCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FPSCamera"));
 	check(FPSCameraComponent != nullptr);
@@ -31,9 +33,6 @@ AUE5FirstProjectCharacter::AUE5FirstProjectCharacter()
 	LevelUpComponentClass->maxXP = 100;
 	LevelUpComponentClass->currentXP = 0;
 	LevelUpComponentClass->levelNumber = 1;
-
-	UE_LOG(LogTemp, Warning, TEXT("Max XP: %d"), LevelUpComponentClass->maxXP);
-	UE_LOG(LogTemp, Warning, TEXT("Level %d reached!"), LevelUpComponentClass->levelNumber);
 
 	//Only owning player sees this mesh
 	FPSMesh->SetOnlyOwnerSee(true);
